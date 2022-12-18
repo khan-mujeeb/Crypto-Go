@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.cryptogo.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_marketFragment"
+            app:destination="@id/marketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/marketFragment"
+        android:name="com.example.cryptogo.ui.MarketFragment"
+        android:label="fragment_market"
+        tools:layout="@layout/fragment_market" >
+        <action
+            android:id="@+id/action_marketFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.example.cryptogo.ui.BookmarkFragment"
+        android:label="fragment_bookmark"
+        tools:layout="@layout/fragment_bookmark" />
+</navigation>
