@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:padding="5dp"
+    android:layout_marginStart="8dp"
+    android:background="@color/pata_nhi_bhai"
+    android:elevation="10dp"
+    android:id="@+id/top_coin_item_view"
+    android:layout_height="60dp">
+    <ImageView
+        android:background="@color/light_olive_green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/header_image"
+        android:id="@+id/coin_image"
+        android:layout_alignParentStart="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/coin_image"
+        android:layout_alignRight="@id/coin_image"
+        android:textColor="@color/black"
+        android:text="bit_coin"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
+    <TextView
+        android:textColor="@color/black"
+        android:text="123453"
+        app:layout_constraintStart_toEndOf="@id/coin_image"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

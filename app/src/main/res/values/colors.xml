@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="olive_green">#439A97</color>
+    <color name="light_olive_green">#62B6B7</color>
+    <color name="bohot_light_olive_green">#97DECE</color>
+    <color name="pata_nhi_bhai">#CBEDD5</color>
 </resources>
