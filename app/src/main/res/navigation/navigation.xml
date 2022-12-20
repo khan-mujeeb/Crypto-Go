@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.cryptogo.ui.HomeFragment"
+        android:name="com.example.cryptogo.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.example.cryptogo.ui.MarketFragment"
+        android:name="com.example.cryptogo.home.MarketFragment"
         android:label="fragment_market"
         tools:layout="@layout/fragment_market" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
-        android:name="com.example.cryptogo.ui.BookmarkFragment"
+        android:name="com.example.cryptogo.home.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" />
 </navigation>

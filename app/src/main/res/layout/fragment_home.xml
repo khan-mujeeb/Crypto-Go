@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
-    tools:context=".ui.HomeFragment">
+    tools:context=".home.HomeFragment">
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/header_image"
@@ -13,14 +13,41 @@
         android:src="@drawable/header_image"
         android:layout_width="500dp"
         android:layout_height="170dp"/>
-
+<TextView
+    android:layout_marginTop="10dp"
+    android:layout_below="@id/header_image"
+    android:id="@+id/topGrainers"
+    android:text="Top Coins"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/top_coins_rc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header_image"
+        android:layout_below="@id/topGrainers"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/top_coin_itemview" />
+
+    <com.google.android.material.tabs.TabLayout
+        app:tabTextColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/top_coins_rc"
+        android:background="@color/bohot_light_olive_green"
+        android:id="@+id/tabs"
+        app:tabIndicatorColor="@color/olive_green"
+        app:tabIndicatorAnimationDuration="@integer/material_motion_duration_medium_2"
+        app:tabIndicatorHeight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@id/tabs"
+    android:id="@+id/viewPager"
+    android:layout_width="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:layout_height="match_parent"/>
+
+
 
 </RelativeLayout>
