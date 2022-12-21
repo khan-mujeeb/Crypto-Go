@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:layout_alignParentTop="true"
         android:hint="search"
@@ -21,9 +22,8 @@
         android:layout_height="50dp"/>
 
     <fragment
-        android:layout_marginTop="10dp"
+
         android:layout_below="@id/search_edit_text"
-        android:layout_alignParentTop="true"
         android:id="@+id/host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
