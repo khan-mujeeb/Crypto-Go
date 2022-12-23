@@ -7,12 +7,6 @@
     android:padding="8dp"
     tools:context=".home.HomeFragment">
 
-<!--    <pl.droidsonroids.gif.GifImageView-->
-<!--        android:id="@+id/header_image"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:src="@drawable/header_image"-->
-<!--        android:layout_width="500dp"-->
-<!--        android:layout_height="170dp"/>-->
 
 <TextView
     android:layout_marginTop="10dp"
