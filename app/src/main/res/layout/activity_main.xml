@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
     tools:context=".MainActivity">
 
     <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:layout_alignParentTop="true"
@@ -32,6 +35,7 @@
         app:navGraph="@navigation/navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+
         app:labelVisibilityMode="labeled"
         android:id="@+id/bottom_navBar"
         app:menu="@menu/bottom_nav_menu"

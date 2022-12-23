@@ -11,4 +11,6 @@
     <color name="light_olive_green">#62B6B7</color>
     <color name="bohot_light_olive_green">#97DECE</color>
     <color name="pata_nhi_bhai">#CBEDD5</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
 </resources>
