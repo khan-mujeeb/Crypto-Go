@@ -43,12 +43,10 @@ class HomeFragment : Fragment() {
 
 
     private fun getResponce() {
-//        activity?.runOnUiThread(Runnable {
-//        })
+
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
             list = result.body()!!.data.cryptoCurrencyList
-            println("mujeeb $list")
             try {
                 binding.topCoinsRc.adapter = TopCoinAdapter(requireContext(), list)
             } catch (e: Throwable) {

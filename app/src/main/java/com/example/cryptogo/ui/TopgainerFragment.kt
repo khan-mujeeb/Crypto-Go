@@ -5,56 +5,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.cryptogo.R
+import androidx.lifecycle.lifecycleScope
+import com.example.cryptogo.adapter.TopCoinAdapter
+import com.example.cryptogo.adapter.TopGainerAdapter
+import com.example.cryptogo.api.ApiInterface
+import com.example.cryptogo.api.ApiUtlis
+import com.example.cryptogo.databinding.FragmentTopgainerBinding
+import com.example.cryptogo.model.CryptoCurrency
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TopgainerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TopgainerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentTopgainerBinding
+    lateinit var list: List<CryptoCurrency>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentTopgainerBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_topgainer, container, false)
+        getResponce()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TopgainerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TopgainerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun getResponce() {
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
+            if(result.body()!=null) {
+                withContext(Dispatchers.Main) {
+                    list = result.body()!!.data.cryptoCurrencyList
+
+                    Collections.sort(list) {
+                        i,j ->(i.quotes[0].percentChange24h.toInt())
+                        .compareTo(j.quotes[0].percentChange24h.toInt())
+                    }
                 }
             }
+
+            try {
+                binding.topGainRc.adapter = TopGainerAdapter(requireContext(), list )
+            } catch (e: Throwable) {
+                // handle exception
+            }
+
+        }
     }
 }

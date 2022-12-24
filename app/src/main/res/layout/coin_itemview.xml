@@ -5,7 +5,8 @@
     app:cardCornerRadius="10dp"
     android:id="@+id/coin_itemview"
     android:elevation="10dp"
-    android:layout_marginTop="5dp"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="-5dp"
     android:backgroundTint="@color/light_olive_green"
     android:gravity="center_vertical"
     android:layout_height="80dp">
