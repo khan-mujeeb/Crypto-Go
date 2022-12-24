@@ -13,4 +13,5 @@
     <color name="pata_nhi_bhai">#CBEDD5</color>
     <color name="green">#00FF00</color>
     <color name="red">#FF0000</color>
+    <color name="hint_color">#353935</color>
 </resources>

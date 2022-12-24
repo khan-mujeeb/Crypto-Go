@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         switchFragment()
-
         getResponce()
 
 

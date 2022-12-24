@@ -9,12 +9,14 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_color"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:layout_alignParentTop="true"
-        android:hint="search"
+        android:hint="Search"
         android:background="@drawable/search_edittext_bg"
         android:layout_marginTop="10dp"
         android:padding="10dp"

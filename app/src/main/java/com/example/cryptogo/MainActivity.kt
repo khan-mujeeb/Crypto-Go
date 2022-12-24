@@ -29,5 +29,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavBar.setupWithNavController(navControl)
     }
 
+    override fun onResume() {
+        super.onResume()
+        init()
+    }
+
 
 }
