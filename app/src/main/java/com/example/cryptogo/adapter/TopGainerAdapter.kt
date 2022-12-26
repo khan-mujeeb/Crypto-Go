@@ -50,8 +50,10 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
         holder.price.text = "${String.format("%.5f",p)}"
 
 
-        val change = list[position].quotes[0].percentChange24h
+        val change = list[position].quotes[0].percentChange30d
+        println("mujeeb khan$change")
         if (change > 0) {
+
             holder.deviation.setTextColor(context.resources.getColor(R.color.green))
             holder.deviation.text = "${String.format("%.2f",change)}"
         } else {

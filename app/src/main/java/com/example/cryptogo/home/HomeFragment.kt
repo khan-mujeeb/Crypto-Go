@@ -33,23 +33,18 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-
+        getResponce()
+        switchFragment()
 
 
         return binding.root
     }
-
-
-//    override fun onStart() {
-//        super.onStart()
+//
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
 //        getResponce()
+//        switchFragment()
 //    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getResponce()
-        switchFragment()
-    }
     override fun onResume() {
         super.onResume()
         getResponce()
@@ -63,6 +58,7 @@ class HomeFragment : Fragment() {
             var list = result.body()!!.data.cryptoCurrencyList
 
             withContext(Dispatchers.IO) {
+                // run on main thread
                 (context as Activity).runOnUiThread {
                     binding.topCoinsRc.adapter = TopCoinAdapter(requireContext(), list)
 //
