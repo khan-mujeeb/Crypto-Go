@@ -10,9 +10,8 @@ import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
 import com.example.cryptogo.model.CryptoCurrency
 
-class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<TopGainerAdapter.TopGainerVieHolder>() {
-
-    class TopGainerVieHolder(view: View): RecyclerView.ViewHolder(view){
+class TopLoserAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<TopLoserAdapter.TopLoserViewHolder>() {
+    class TopLoserViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = CoinItemviewBinding.bind(view)
         val name = binding.fullName
         val shortName = binding.shortName
@@ -23,17 +22,17 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopGainerVieHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopLoserViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(
                 R.layout.coin_itemview,
                 parent,
                 false
             )
-        return TopGainerVieHolder(view)
+        return TopLoserViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TopGainerVieHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopLoserViewHolder, position: Int) {
         holder.name.text = list[position].name
         Glide.with(context)
             .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${list[position].id}.png")
@@ -63,4 +62,5 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
     override fun getItemCount(): Int {
         return list.size
     }
+
 }

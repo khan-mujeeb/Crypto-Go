@@ -28,11 +28,4 @@ class MainActivity : AppCompatActivity() {
         val navControl = findNavController(findViewById(R.id.host))
         binding.bottomNavBar.setupWithNavController(navControl)
     }
-
-    override fun onResume() {
-        super.onResume()
-        init()
-    }
-
-
 }

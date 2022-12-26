@@ -19,7 +19,9 @@ import java.util.*
 
 class TopgainerFragment : Fragment() {
     lateinit var binding: FragmentTopgainerBinding
+    lateinit var dataItem: List<CryptoCurrency>
     lateinit var list: List<CryptoCurrency>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,7 @@ class TopgainerFragment : Fragment() {
 
         return binding.root
     }
+
 
     private fun getResponce() {
 
@@ -47,6 +50,7 @@ class TopgainerFragment : Fragment() {
                 }
             }
 
+
             try {
                 binding.topGainRc.adapter = TopGainerAdapter(requireContext(), list )
             } catch (e: Throwable) {
@@ -55,4 +59,6 @@ class TopgainerFragment : Fragment() {
 
         }
     }
+
+
 }

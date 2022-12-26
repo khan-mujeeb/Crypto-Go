@@ -22,9 +22,10 @@ import com.example.cryptogo.ui.TopgainerFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
-    lateinit var list: List<CryptoCurrency>
+//    lateinit var list: List<CryptoCurrency>
     private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +33,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        switchFragment()
-        getResponce()
 
 
 
@@ -41,18 +40,35 @@ class HomeFragment : Fragment() {
     }
 
 
+//    override fun onStart() {
+//        super.onStart()
+//        getResponce()
+//    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getResponce()
+        switchFragment()
+    }
+    override fun onResume() {
+        super.onResume()
+        getResponce()
+    }
+
 
     private fun getResponce() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
-            list = result.body()!!.data.cryptoCurrencyList
-            try {
-                binding.topCoinsRc.adapter = TopCoinAdapter(requireContext(), list)
-            } catch (e: Throwable) {
-                // handle exception
-            }
+            var list = result.body()!!.data.cryptoCurrencyList
 
+            withContext(Dispatchers.IO) {
+                (context as Activity).runOnUiThread {
+                    binding.topCoinsRc.adapter = TopCoinAdapter(requireContext(), list)
+//
+                }
+
+            }
         }
     }
 
