@@ -36,10 +36,10 @@ class TopCoinAdapter(val context: Context, var list: List<CryptoCurrency>): Recy
         val change = list[position].quotes[0].percentChange24h
         if (change > 0) {
             holder.coinPrice.setTextColor(context.resources.getColor(R.color.green))
-            holder.coinPrice.text = "+${String.format("%.2f",change)}"
+            holder.coinPrice.text = "+${String.format("%.2f",change)}%"
         } else {
             holder.coinPrice.setTextColor(context.resources.getColor(R.color.red))
-            holder.coinPrice.text = "${String.format("%.2f",change)}"
+            holder.coinPrice.text = "${String.format("%.2f",change)}%"
         }
     }
 

@@ -5,11 +5,12 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
+
     tools:context=".home.HomeFragment">
 
 
 <TextView
+    android:layout_marginStart="8dp"
     android:textColor="@color/black"
     android:layout_marginTop="8dp"
     android:layout_alignParentTop="true"

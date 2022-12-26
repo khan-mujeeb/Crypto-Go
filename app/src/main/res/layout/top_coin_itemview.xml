@@ -7,7 +7,6 @@
     android:backgroundTint="@color/pata_nhi_bhai"
     app:cardCornerRadius="10dp"
     android:layout_marginStart="8dp"
-    android:background="@color/pata_nhi_bhai"
     android:elevation="10dp"
     android:layout_gravity=""
     android:id="@+id/top_coin_item_view"
@@ -29,6 +28,7 @@
             android:layout_height="50dp"/>
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/coin_image"
