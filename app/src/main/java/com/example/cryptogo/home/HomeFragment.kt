@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 
 
     private fun getResponce() {
-        binding.loading.visibility = View.VISIBLE
+//        binding.loading.visibility = View.VISIBLE
 
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
