@@ -34,7 +34,7 @@ class TopgainerFragment : Fragment() {
 
 
     private fun getResponce() {
-
+        binding.loading.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
             if(result.body()!=null) {
@@ -46,6 +46,8 @@ class TopgainerFragment : Fragment() {
                         .compareTo(i.quotes[0].percentChange30d.toInt())
                     }
                     (context as Activity).runOnUiThread{
+                        binding.loading.visibility = View.INVISIBLE
+                        binding.topGainRc.visibility = View.VISIBLE
                         binding.topGainRc.adapter = TopGainerAdapter(requireContext(), list )
                     }
                 }
