@@ -46,16 +46,16 @@ class TopLoserAdapter(var context: Context, var list: List<CryptoCurrency>): Rec
 
         holder.shortName.text = list[position].symbol
         val p = list[position].quotes[0].price
-        holder.price.text = "${String.format("%.5f",p)}"
+        holder.price.text = "$${String.format("%.7f",p)}"
 
 
         val change = list[position].quotes[0].percentChange24h
         if (change > 0) {
             holder.deviation.setTextColor(context.resources.getColor(R.color.green))
-            holder.deviation.text = "${String.format("%.2f",change)}"
+            holder.deviation.text = "+${String.format("%.2f",change)}%"
         } else {
             holder.deviation.setTextColor(context.resources.getColor(R.color.red))
-            holder.deviation.text = "${String.format("%.2f",change)}"
+            holder.deviation.text = "${String.format("%.2f",change)}%"
         }
     }
 

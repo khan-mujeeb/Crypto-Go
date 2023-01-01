@@ -1,5 +1,6 @@
 package com.example.cryptogo.ui
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.example.cryptogo.adapter.TopGainerAdapter
+import com.example.cryptogo.adapter.TopLoserAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
 import com.example.cryptogo.databinding.FragmentTopLoserBinding
@@ -45,19 +47,14 @@ class TopLoserFragment : Fragment() {
                     list = result.body()!!.data.cryptoCurrencyList
 
                     Collections.sort(list) {
-                            i,j ->(i.quotes[0].percentChange24h.toInt())
-                        .compareTo(j.quotes[0].percentChange24h.toInt())
+                            i,j ->(i.quotes[0].percentChange30d.toInt())
+                        .compareTo(j.quotes[0].percentChange30d.toInt())
                     }
                 }
+                (context as Activity).runOnUiThread{
+                    binding.topLoserRc.adapter = TopGainerAdapter(requireContext(), list )
+                }
             }
-
-            print("mujeeb $list")
-            try {
-                binding.topLoserRc.adapter = TopGainerAdapter(requireContext(), list )
-            } catch (e: Throwable) {
-                // handle exception
-            }
-
         }
     }
 

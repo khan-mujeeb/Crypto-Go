@@ -58,7 +58,7 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
             holder.deviation.text = "+${String.format("%.2f",change)}%"
         } else {
             holder.deviation.setTextColor(context.resources.getColor(R.color.red))
-            holder.deviation.text = "${String.format("%.2f",change)}"
+            holder.deviation.text = "${String.format("%.2f",change)}%"
         }
     }
 

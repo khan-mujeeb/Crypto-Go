@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_marketFragment"
             app:destination="@id/marketFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/marketFragment"
@@ -28,4 +31,9 @@
         android:name="com.example.cryptogo.home.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.cryptogo.ui.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>

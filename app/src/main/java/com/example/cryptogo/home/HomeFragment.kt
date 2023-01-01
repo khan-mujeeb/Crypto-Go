@@ -39,12 +39,7 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        getResponce()
-//        switchFragment()
-//    }
+
     override fun onResume() {
         super.onResume()
         getResponce()
@@ -52,6 +47,7 @@ class HomeFragment : Fragment() {
 
 
     private fun getResponce() {
+        binding.loading.visibility = View.VISIBLE
 
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
@@ -60,6 +56,8 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.IO) {
                 // run on main thread
                 (context as Activity).runOnUiThread {
+                    binding.loading.visibility = View.INVISIBLE
+                    binding.topCoinsRc.visibility = View.VISIBLE
                     binding.topCoinsRc.adapter = TopCoinAdapter(requireContext(), list)
 //
                 }
@@ -69,6 +67,7 @@ class HomeFragment : Fragment() {
     }
 
     fun switchFragment() {
+
         val fragmentList = ArrayList<Fragment>()
         fragmentList.add(TopgainerFragment())
         fragmentList.add(TopLoserFragment())

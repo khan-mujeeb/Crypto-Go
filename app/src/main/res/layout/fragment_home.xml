@@ -18,7 +18,18 @@
     android:text="Top Coins"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:visibility="visible"
+        android:elevation="200000dp"
+        android:src="@drawable/spinner"
+        android:layout_below="@id/topGrainers"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="invisible"
         android:id="@+id/top_coins_rc"
         android:layout_width="match_parent"
         android:layout_height="60dp"
