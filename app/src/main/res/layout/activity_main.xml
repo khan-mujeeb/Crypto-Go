@@ -37,7 +37,8 @@
         app:navGraph="@navigation/navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-
+        android:background="@color/olive_green"
+        app:itemRippleColor="@color/white"
         app:labelVisibilityMode="labeled"
         android:id="@+id/bottom_navBar"
         app:menu="@menu/bottom_nav_menu"

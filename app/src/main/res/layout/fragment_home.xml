@@ -12,7 +12,7 @@
 <TextView
     android:layout_marginStart="8dp"
     android:textColor="@color/black"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="10dp"
     android:layout_alignParentTop="true"
     android:id="@+id/topGrainers"
     android:text="Top Coins"
@@ -26,7 +26,7 @@
         android:elevation="200000dp"
         android:src="@drawable/spinner"
         android:layout_below="@id/topGrainers"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"/>
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="invisible"
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@id/topGrainers"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/top_coin_itemview" />
