@@ -55,7 +55,7 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
 
 
         val change = list[position].quotes[0].percentChange30d
-        println("mujeeb khan$change")
+
         if (change > 0) {
 
             holder.deviation.setTextColor(context.resources.getColor(R.color.green))
@@ -65,7 +65,7 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
             holder.deviation.text = "${String.format("%.2f",change)}%"
         }
 
-        // setting on click listner on recyclerview
+        // setting on click listener on recyclerview
         holder.itemView.setOnClickListener {
             findNavController(it).navigate(
                 HomeFragmentDirections.actionHomeFragmentToDetailsFragment(list[position])

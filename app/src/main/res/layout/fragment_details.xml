@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="6dp"
+
     android:background="@color/olive_green"
     tools:context=".ui.DetailsFragment">
 
@@ -14,9 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="12dp"
-        android:paddingTop="8dp"
+
         android:paddingRight="12dp"
-        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/addWatchlistButton"
             app:layout_constraintStart_toEndOf="@+id/backStackButton"
@@ -76,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/detailChangeImageView"
             app:layout_constraintTop_toBottomOf="@+id/detailPriceTextView"
             tools:text="2.68%" />
@@ -87,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/detailImageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="$108.56" />
@@ -124,7 +123,7 @@
             android:layout_height="match_parent"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_30m"
+            android:id="@+id/btn_1hr"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1h"

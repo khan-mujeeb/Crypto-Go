@@ -5,56 +5,147 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.cryptogo.R
+import com.example.cryptogo.databinding.FragmentDetailsBinding
+import com.example.cryptogo.model.CryptoCurrency
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentDetailsBinding
+    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentDetailsBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        val data: CryptoCurrency = args.data!!
+
+        //set data
+        setData(data)
+
+        // set chart
+        setChart(data)
+
+        //btn
+        setBtnOnClick(data)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setBtnOnClick(data: CryptoCurrency) {
+
+        val _15m = binding.btn15m
+        val _1hr = binding.btn1hr
+        val _4hr = binding.btn4hr
+        val _1d = binding.btn1D
+        val _1W = binding.btn1W
+        val _1M = binding.btn1M
+
+        val clickListener = View.OnClickListener {
+
+            when(it.id) {
+                _15m.id -> loadChartData(it, "15", data, _1W, _1M, _1d, _1hr, _4hr)
+                _1hr.id -> loadChartData(it, "1H", data, _1W, _1M, _1d, _15m, _4hr)
+                _4hr.id -> loadChartData(it, "4H", data, _1W, _1M, _1d, _1hr, _15m)
+                _1d.id -> loadChartData(it, "D", data, _1W, _1M, _15m, _1hr, _4hr)
+                _1W.id -> loadChartData(it, "W", data, _15m, _1M, _1d, _1hr, _4hr)
+                _1M.id -> loadChartData(it, "M", data, _1W, _15m, _1d, _1hr, _4hr)
+
             }
+        }
+
+        // setting initial background color
+        _15m.setBackgroundColor(R.color.olive_green!!)
+        disableBtn(_1M, _1d, _1hr, _4hr, _1W)
+
+        _15m.setOnClickListener(clickListener)
+        _1hr.setOnClickListener(clickListener)
+        _4hr.setOnClickListener(clickListener)
+        _1d.setOnClickListener(clickListener)
+        _1W.setOnClickListener(clickListener)
+        _1M.setOnClickListener(clickListener)
     }
+
+    private fun loadChartData(
+        it: View?,
+        s: String,
+        data: CryptoCurrency,
+        _1W: AppCompatButton,
+        _1M: AppCompatButton,
+        _1d: AppCompatButton,
+        _1hr: AppCompatButton,
+        _4hr: AppCompatButton
+    ) {
+        it!!.setBackgroundColor(R.color.olive_green!!)
+        disableBtn(_1M, _1d, _1hr, _4hr, _1W)
+
+        val graphView = binding.graph
+        graphView.settings.javaScriptEnabled = true
+        graphView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+
+        var url = "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=${data.symbol}USD&interval=${s}&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=Dark&style=1&timezone=Etc%2FUTC&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en&utm_source=coinmarketcap.com&utm_medium=widget&utm_campaign=chart&utm_term=BTCUSDT"
+        binding.graph.loadUrl(url)
+    }
+
+    private fun disableBtn(
+        _1M: AppCompatButton,
+        _1d: AppCompatButton,
+        _1hr: AppCompatButton,
+        _4hr: AppCompatButton,
+        _1W: AppCompatButton
+    ) {
+        _1W.background = null
+        _1M.background = null
+        _1d.background = null
+        _4hr.background = null
+        _1hr.background = null
+    }
+
+    private fun setData(data: CryptoCurrency) {
+
+        // symbol
+        binding.detailSymbolTextView.text = data.symbol
+
+        // price
+        val price = data.quotes[0].price
+        binding.detailPriceTextView.text = "$${String.format("%.8f",price)}"
+
+        // logo
+        Glide.with(this)
+            .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${data.id}.png")
+            .thumbnail(Glide.with(this).load(R.drawable.spinner))
+            .into(binding.detailImageView)
+
+        //change
+        val change = data.quotes[0].percentChange24h
+        val holder = binding.detailChangeTextView
+        val ImgHolder = binding.detailChangeImageView
+        if (change > 0) {
+            holder.setTextColor(context?.resources!!.getColor(R.color.green))
+            binding.detailChangeTextView.text = "${String.format("%.2f",change)}%"
+            ImgHolder.setImageResource(R.drawable.ic_caret_up)
+        } else {
+            holder.setTextColor(context?.resources!!.getColor(R.color.red))
+            holder.text = "${String.format("%.2f",change)}%"
+            ImgHolder.setImageResource(R.drawable.ic_caret_down)
+        }
+    }
+
+
+    private fun setChart(data: CryptoCurrency) {
+        val graphView = binding.graph
+        graphView.settings.javaScriptEnabled = true
+        graphView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        val s = "15"
+
+
+        var url = "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=${data.symbol}USD&interval=${s}&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=Dark&style=1&timezone=Etc%2FUTC&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en&utm_source=coinmarketcap.com&utm_medium=widget&utm_campaign=chart&utm_term=BTCUSDT"
+        binding.graph.loadUrl(url)
+    }
+
 }
