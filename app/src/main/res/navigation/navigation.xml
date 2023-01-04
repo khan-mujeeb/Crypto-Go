@@ -35,5 +35,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.cryptogo.ui.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="data"
+            app:argType="com.example.cryptogo.model.CryptoCurrency"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
