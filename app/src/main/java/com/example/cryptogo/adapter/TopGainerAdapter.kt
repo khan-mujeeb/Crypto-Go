@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
+import com.example.cryptogo.home.HomeFragmentDirections
 import com.example.cryptogo.model.CryptoCurrency
 
 class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<TopGainerAdapter.TopGainerVieHolder>() {
@@ -34,7 +36,9 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
     }
 
     override fun onBindViewHolder(holder: TopGainerVieHolder, position: Int) {
+
         holder.name.text = list[position].name
+
         Glide.with(context)
             .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${list[position].id}.png")
             .thumbnail(Glide.with(context).load(R.drawable.spinner))
@@ -60,6 +64,14 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
             holder.deviation.setTextColor(context.resources.getColor(R.color.red))
             holder.deviation.text = "${String.format("%.2f",change)}%"
         }
+
+        // setting on click listner on recyclerview
+        holder.itemView.setOnClickListener {
+            findNavController(it).navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(list[position])
+            )
+        }
+
     }
 
     override fun getItemCount(): Int {
