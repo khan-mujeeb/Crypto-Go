@@ -26,6 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             android:padding="8dp"
             android:src="@drawable/ic_star_outline"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             android:padding="8dp"
             android:src="@drawable/ic_back_stack"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,32 +117,38 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_15m"
             android:layout_width="0dp"
             android:text="@string/_15m"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_30m"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1h"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_4hr"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_4h"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1D"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1d"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1W"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1w"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1M"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1m"
