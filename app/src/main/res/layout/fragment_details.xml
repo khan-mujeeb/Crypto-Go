@@ -6,7 +6,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:background="@color/olive_green"
+    android:background="@color/light_olive_green"
     tools:context=".ui.DetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

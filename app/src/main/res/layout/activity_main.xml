@@ -27,7 +27,6 @@
         android:layout_height="50dp"/>
 
     <fragment
-
         android:layout_below="@id/search_edit_text"
         android:id="@+id/host"
         android:name="androidx.navigation.fragment.NavHostFragment"

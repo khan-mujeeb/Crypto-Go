@@ -32,7 +32,6 @@ class TopgainerFragment : Fragment() {
         return binding.root
     }
 
-
     private fun getResponce() {
         binding.loading.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {

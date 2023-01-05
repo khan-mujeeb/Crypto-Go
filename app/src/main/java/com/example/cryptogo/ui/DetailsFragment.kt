@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -21,6 +22,9 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val search = activity?.findViewById<EditText>(R.id.search_edit_text)
+        search?.visibility = View.GONE
+
         binding = FragmentDetailsBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         val data: CryptoCurrency = args.data!!
