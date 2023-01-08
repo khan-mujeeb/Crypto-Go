@@ -4,8 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
     tools:context=".home.MarketFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:src="@drawable/coin_loading"
+        android:layout_height="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/market_rc"
