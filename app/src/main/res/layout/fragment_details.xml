@@ -3,19 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+ 
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:background="@color/light_olive_green"
+    android:background="@color/white"
     tools:context=".ui.DetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/olive_green"
         android:id="@+id/detailAppbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="12dp"
-
-        android:paddingRight="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +39,6 @@
             android:background="@null"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:padding="8dp"
             android:src="@drawable/ic_back_stack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/detailAppbar">
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/detailChangeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,11 +80,12 @@
             tools:text="2.68%" />
 
         <TextView
+
             android:id="@+id/detailPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/detailImageView"
             app:layout_constraintTop_toTopOf="parent"
@@ -116,6 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <androidx.appcompat.widget.AppCompatButton
+            android:textColor="@color/black"
             android:id="@+id/btn_15m"
             android:layout_width="0dp"
             android:text="@string/_15m"
@@ -124,6 +125,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1hr"
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/_1h"
@@ -132,17 +134,20 @@
             android:id="@+id/btn_4hr"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/_4h"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1D"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/_1d"
             android:layout_height="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1W"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_weight="1"
             android:text="@string/_1w"
             android:layout_height="match_parent"/>
@@ -150,6 +155,7 @@
             android:id="@+id/btn_1M"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="@string/_1m"
             android:layout_height="match_parent"/>
     </LinearLayout>
@@ -159,10 +165,139 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/details"
-        android:padding="8dp"
+    <LinearLayout
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:elevation="20dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:id="@+id/name"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="4dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Rank"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:id="@+id/rank"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="4dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:text="Market Cap"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:id="@+id/marketCap"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:padding="4dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="total supply"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/totalSupply"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="4dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:text="max supply"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:id="@+id/maxSupply"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
 
 </LinearLayout>

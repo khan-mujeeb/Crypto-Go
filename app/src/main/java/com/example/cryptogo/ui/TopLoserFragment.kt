@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.example.cryptogo.adapter.TopGainerAdapter
-import com.example.cryptogo.adapter.TopLoserAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
 import com.example.cryptogo.databinding.FragmentTopLoserBinding

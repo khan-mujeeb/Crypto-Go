@@ -38,6 +38,8 @@ class DetailsFragment : Fragment() {
         //btn
         setBtnOnClick(data)
 
+
+
         return binding.root
     }
 
@@ -73,6 +75,7 @@ class DetailsFragment : Fragment() {
         _1d.setOnClickListener(clickListener)
         _1W.setOnClickListener(clickListener)
         _1M.setOnClickListener(clickListener)
+
     }
 
     private fun loadChartData(
@@ -138,6 +141,12 @@ class DetailsFragment : Fragment() {
             holder.text = "${String.format("%.2f",change)}%"
             ImgHolder.setImageResource(R.drawable.ic_caret_down)
         }
+
+        binding.name.text = data.name
+        binding.rank.text = data.cmcRank.toString()
+        binding.marketCap.text = (data.quotes[0].marketCap).toInt().toString()
+        binding.totalSupply.text = data.totalSupply.toString()
+        binding.maxSupply.text = data.maxSupply.toString()
     }
 
 
