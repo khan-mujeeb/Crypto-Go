@@ -10,7 +10,7 @@ import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
 import com.example.cryptogo.model.CryptoCurrency
 
-class TopLoserAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<TopLoserAdapter.TopLoserViewHolder>() {
+class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<MarketAdapter.TopLoserViewHolder>() {
     class TopLoserViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = CoinItemviewBinding.bind(view)
         val name = binding.fullName
@@ -59,6 +59,10 @@ class TopLoserAdapter(var context: Context, var list: List<CryptoCurrency>): Rec
         }
     }
 
+    fun updateDataList(datalist:List<CryptoCurrency>) {
+        list = datalist
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return list.size
     }
