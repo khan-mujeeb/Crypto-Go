@@ -33,6 +33,7 @@ class TopgainerFragment : Fragment() {
     }
 
     private fun getResponce() {
+
         binding.loading.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()

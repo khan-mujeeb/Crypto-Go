@@ -1,12 +1,17 @@
 package com.example.cryptogo
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cryptogo.database.CoinDatabase
 import com.example.cryptogo.databinding.ActivityMainBinding
+import com.example.cryptogo.repository.CoinRepostory
+import com.example.cryptogo.viewmodel.CoinViewModel
+import com.example.cryptogo.viewmodel.CoinViewModelFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,21 +24,24 @@ class MainActivity : AppCompatActivity() {
         // bottomnav bar
         init()
 
-//        binding.searchEditText.setOnClickListener{
-//            changeFragment()
-//        }
+        coinDatabase = CoinDatabase(this)
+        repository = CoinRepostory(coinDatabase)
+        factory = CoinViewModelFactory(repository)
+        viewmodel = CoinViewModel(repository)
+
+
 
     }
-
-//    private fun changeFragment() {
-//        val navController: NavController = findNavController(this, R.id.host)
-//        navController.navigateUp()
-//        navController.navigate(R.id.marketFragment)
-////        binding.searchEditText.visibility = View.GONE
-//    }
-
     fun init() {
-            val navControl = findNavController(findViewById(R.id.host))
-            binding.bottomNavBar.setupWithNavController(navControl)
-        }
+        val navControl = findNavController(findViewById(R.id.host))
+        binding.bottomNavBar.setupWithNavController(navControl)
+    }
+
+    companion object {
+        lateinit var viewmodel: CoinViewModel
+        private lateinit var coinDatabase: CoinDatabase
+        private lateinit var repository: CoinRepostory
+        private lateinit var factory: CoinViewModelFactory
+    }
+
 }

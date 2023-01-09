@@ -6,14 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.cryptogo.MainActivity
+import com.example.cryptogo.MainActivity.Companion.viewmodel
 import com.example.cryptogo.R
+import com.example.cryptogo.database.CoinDatabase
 import com.example.cryptogo.databinding.FragmentDetailsBinding
+import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
+import com.example.cryptogo.repository.CoinRepostory
+import com.example.cryptogo.viewmodel.CoinViewModel
+import com.example.cryptogo.viewmodel.CoinViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
+
 
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
@@ -25,9 +39,24 @@ class DetailsFragment : Fragment() {
         val search = activity?.findViewById<EditText>(R.id.search_edit_text)
         search?.visibility = View.GONE
 
+
+
+
+
         binding = FragmentDetailsBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         val data: CryptoCurrency = args.data!!
+
+        binding.addWatchlistButton.setOnClickListener{
+            val coin = Coin(
+                null,
+                data.cmcRank
+                )
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewmodel.insertCoin(coin)
+            }
+            Toast.makeText(requireContext(),"clicked",Toast.LENGTH_LONG).show()
+        }
 
         //set data
         setData(data)
