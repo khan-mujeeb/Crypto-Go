@@ -28,7 +28,7 @@
 <!--        android:layout_height="50dp"/>-->
 
     <fragment
-        android:layout_below="@id/search_edit_text"
+        android:layout_alignParentTop="true"
         android:id="@+id/host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"

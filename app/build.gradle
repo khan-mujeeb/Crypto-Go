@@ -2,11 +2,12 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id "androidx.navigation.safeargs.kotlin"
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.example.cryptogo'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.cryptogo"
@@ -38,6 +39,24 @@ android {
 }
 
 dependencies {
+
+
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0-alpha04"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha03"
+
+// ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
+// Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:2.5.1"
+
+// Android Room
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+
+// optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.2.0"
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
