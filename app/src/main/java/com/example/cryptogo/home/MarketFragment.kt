@@ -1,18 +1,15 @@
 package com.example.cryptogo.home
 
-import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.cryptogo.R
+import com.example.cryptogo.MainActivity.Companion.list
 import com.example.cryptogo.adapter.MarketAdapter
-import com.example.cryptogo.adapter.TopGainerAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
 import com.example.cryptogo.databinding.FragmentMarketBinding
@@ -20,13 +17,11 @@ import com.example.cryptogo.model.CryptoCurrency
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 class MarketFragment : Fragment() {
 
     private lateinit var adapter: MarketAdapter
     private lateinit var binding: FragmentMarketBinding
-    var list = listOf<CryptoCurrency>()
     private lateinit var searchText: String
 
 
@@ -50,12 +45,12 @@ class MarketFragment : Fragment() {
     private fun getResponce() {
         binding.loading.visibility = View.VISIBLE
 
-        adapter = MarketAdapter(requireContext(),list)
+        adapter = MarketAdapter(requireContext(), list)
         binding.marketRc.adapter = adapter
 
         lifecycleScope.launch(Dispatchers.IO) {
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
-            if(result.body()!=null) {
+            if (result.body() != null) {
                 withContext(Dispatchers.Main) {
                     list = result.body()!!.data.cryptoCurrencyList
                     adapter.updateDataList(list)
@@ -66,9 +61,9 @@ class MarketFragment : Fragment() {
         }
     }
 
-    public fun searchCoin() {
+    fun searchCoin() {
 
-        binding.searchEditText.addTextChangedListener(object: TextWatcher {
+        binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -89,8 +84,8 @@ class MarketFragment : Fragment() {
     private fun updateRecyclerView() {
         var data = ArrayList<CryptoCurrency>()
         for (item in list) {
-            val coinName = item.name.toString().toLowerCase()
-            val coinSymbol = item.symbol.toString().toLowerCase()
+            val coinName = item.name.toLowerCase()
+            val coinSymbol = item.symbol.toLowerCase()
 
             if (coinName.contains(searchText) || coinSymbol.contains(searchText)) {
                 data.add(item)
@@ -98,4 +93,6 @@ class MarketFragment : Fragment() {
         }
         adapter.updateDataList(data)
     }
+
+
 }

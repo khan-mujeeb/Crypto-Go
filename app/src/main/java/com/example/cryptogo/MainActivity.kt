@@ -9,6 +9,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cryptogo.database.CoinDatabase
 import com.example.cryptogo.databinding.ActivityMainBinding
+import com.example.cryptogo.model.CryptoCurrency
 import com.example.cryptogo.repository.CoinRepostory
 import com.example.cryptogo.viewmodel.CoinViewModel
 import com.example.cryptogo.viewmodel.CoinViewModelFactory
@@ -30,14 +31,15 @@ class MainActivity : AppCompatActivity() {
         viewmodel = CoinViewModel(repository)
 
 
-
     }
+
     fun init() {
         val navControl = findNavController(findViewById(R.id.host))
         binding.bottomNavBar.setupWithNavController(navControl)
     }
 
     companion object {
+        var list = listOf<CryptoCurrency>()
         lateinit var viewmodel: CoinViewModel
         private lateinit var coinDatabase: CoinDatabase
         private lateinit var repository: CoinRepostory

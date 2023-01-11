@@ -10,7 +10,7 @@ import com.example.cryptogo.model.Coin
 interface Dao {
 
     @Query("SELECT * FROM coin_table")
-    fun getAll(): LiveData<List<Coin>>
+    fun getAll(): List<Coin>
 
     @Insert
     fun insert(coin: Coin)

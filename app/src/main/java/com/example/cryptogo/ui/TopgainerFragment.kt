@@ -32,6 +32,8 @@ class TopgainerFragment : Fragment() {
         return binding.root
     }
 
+
+
     private fun getResponce() {
 
         binding.loading.visibility = View.VISIBLE
@@ -52,11 +54,6 @@ class TopgainerFragment : Fragment() {
                     }
                 }
             }
-
-
-
         }
-    }
-
-
+    }   // getResponse End
 }

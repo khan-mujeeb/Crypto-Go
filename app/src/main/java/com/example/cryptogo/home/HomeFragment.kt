@@ -46,11 +46,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        switchFragment()
-    }
-
 
     private fun getResponce() {
 //        binding.loading.visibility = View.VISIBLE
