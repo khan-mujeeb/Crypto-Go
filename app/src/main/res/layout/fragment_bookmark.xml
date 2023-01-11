@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.BookmarkFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:src="@drawable/coin_loading"
+        android:layout_height="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookmark_rc"

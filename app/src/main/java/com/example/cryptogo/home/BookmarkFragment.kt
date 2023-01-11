@@ -52,7 +52,7 @@ class BookmarkFragment : Fragment() {
 
     private fun getResponce() {
 
-
+        binding.loading.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {
             var dataList = viewmodel.getAllCoin()
             val result = ApiUtlis.getInstance().create(ApiInterface::class.java).getMarketData()
@@ -76,6 +76,7 @@ class BookmarkFragment : Fragment() {
         (context as Activity).runOnUiThread {
 
             var adapter = TopGainerAdapter(requireContext(), bookmarkList)
+            binding.loading.visibility = View.INVISIBLE
             binding.bookmarkRc.adapter = adapter
         }
 
