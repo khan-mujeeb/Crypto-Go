@@ -40,10 +40,15 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         getResponce()
-        switchFragment()
+
 
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        switchFragment()
     }
 
 

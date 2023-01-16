@@ -27,13 +27,14 @@ class TopgainerFragment : Fragment() {
     ): View? {
         binding = FragmentTopgainerBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        getResponce()
-
         return binding.root
     }
 
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getResponce()
+    }
     private fun getResponce() {
 
         binding.loading.visibility = View.VISIBLE

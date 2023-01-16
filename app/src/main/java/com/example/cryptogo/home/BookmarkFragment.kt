@@ -7,9 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.cryptogo.MainActivity
-import com.example.cryptogo.MainActivity.Companion.list
-import com.example.cryptogo.adapter.MarketAdapter
 import com.example.cryptogo.adapter.TopGainerAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
