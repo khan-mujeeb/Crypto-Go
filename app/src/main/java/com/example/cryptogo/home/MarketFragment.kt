@@ -45,7 +45,7 @@ class MarketFragment : Fragment() {
     private fun getResponce() {
         binding.loading.visibility = View.VISIBLE
 
-        adapter = MarketAdapter(requireContext(), list)
+        adapter = MarketAdapter(requireContext(), list,"market")
         binding.marketRc.adapter = adapter
 
         lifecycleScope.launch(Dispatchers.IO) {

@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.example.cryptogo.adapter.TopCoinAdapter
-import com.example.cryptogo.adapter.TopGainerAdapter
+import com.example.cryptogo.adapter.MarketAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
 import com.example.cryptogo.databinding.FragmentTopgainerBinding
-import com.example.cryptogo.model.CryptoCurrency
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -51,7 +49,7 @@ class TopgainerFragment : Fragment() {
                     (context as Activity).runOnUiThread{
                         binding.loading.visibility = View.INVISIBLE
                         binding.topGainRc.visibility = View.VISIBLE
-                        binding.topGainRc.adapter = TopGainerAdapter(requireContext(), list )
+                        binding.topGainRc.adapter = MarketAdapter(requireContext(), list,"home" )
                     }
                 }
             }

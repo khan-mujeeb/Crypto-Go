@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
+import com.example.cryptogo.home.BookmarkFragment
+import com.example.cryptogo.home.BookmarkFragmentDirections
+import com.example.cryptogo.home.HomeFragmentDirections
+import com.example.cryptogo.home.MarketFragmentDirections
 import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
 
-class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<MarketAdapter.TopLoserViewHolder>() {
+class MarketAdapter(var context: Context, var list: List<CryptoCurrency>, val From: String): RecyclerView.Adapter<MarketAdapter.TopLoserViewHolder>() {
     class TopLoserViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = CoinItemviewBinding.bind(view)
         val name = binding.fullName
@@ -42,6 +47,27 @@ class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): Recyc
         holder.shortName.text = list[position].symbol
         val p = list[position].quotes[0].price
         holder.price.text = "$${String.format("%.7f",p)}"
+
+        holder.itemView.setOnClickListener {
+            when(From) {
+                "home" -> {
+                    Navigation.findNavController(it).navigate(
+                        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(list[position])
+                    )
+                }
+                "market" -> {
+                    Navigation.findNavController(it).navigate(
+                        MarketFragmentDirections.actionMarketFragmentToDetailsFragment(list[position])
+                    )
+                }
+                "bookmark" -> {
+                    Navigation.findNavController(it).navigate(
+                        BookmarkFragmentDirections.actionBookmarkFragmentToDetailsFragment(list[position])
+                    )
+                }
+            }
+
+        }
 
     }
 

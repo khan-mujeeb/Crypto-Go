@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptogo.adapter.MarketAdapter
-import com.example.cryptogo.adapter.TopGainerAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
 import com.example.cryptogo.database.CoinDatabase
@@ -24,7 +23,6 @@ import com.example.cryptogo.viewmodel.CoinViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 
 class BookmarkFragment : Fragment() {
 
@@ -77,7 +75,7 @@ class BookmarkFragment : Fragment() {
             }
         }
         (context as Activity).runOnUiThread {
-            var adapter = MarketAdapter(requireContext(),bookmarkList)
+            var adapter = MarketAdapter(requireContext(),bookmarkList,"bookmark")
             binding.loading.visibility = View.INVISIBLE
             binding.bookmarkRc.adapter = adapter
             swipeTodelete(adapter)
