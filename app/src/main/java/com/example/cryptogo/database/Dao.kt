@@ -15,6 +15,7 @@ interface Dao {
     @Insert
     fun insert(coin: Coin)
 
-//    @Delete
-//    suspend fun deleteEntry(coin: Coin)
+    @Query("DELETE FROM coin_table WHERE coinNumber = :coin_number")
+    suspend fun deleteEntry(coin_number: Int)
+
 }

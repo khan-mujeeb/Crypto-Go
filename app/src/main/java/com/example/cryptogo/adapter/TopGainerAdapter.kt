@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
 import com.example.cryptogo.home.HomeFragmentDirections
+import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
 
 class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<TopGainerAdapter.TopGainerVieHolder>() {
@@ -72,6 +73,9 @@ class TopGainerAdapter(var context: Context, var list: List<CryptoCurrency>): Re
             )
         }
 
+    }
+    fun getCoin(pos: Int): Coin {
+        return Coin(null, list[pos].cmcRank)
     }
 
     override fun getItemCount(): Int {

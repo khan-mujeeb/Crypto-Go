@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cryptogo.adapter.MarketAdapter
 import com.example.cryptogo.adapter.TopGainerAdapter
 import com.example.cryptogo.api.ApiInterface
 import com.example.cryptogo.api.ApiUtlis
@@ -20,6 +24,7 @@ import com.example.cryptogo.viewmodel.CoinViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 
 class BookmarkFragment : Fragment() {
 
@@ -42,6 +47,7 @@ class BookmarkFragment : Fragment() {
 
 
         getResponce()
+
 
 
         return binding.root
@@ -71,13 +77,42 @@ class BookmarkFragment : Fragment() {
             }
         }
         (context as Activity).runOnUiThread {
-
-            var adapter = TopGainerAdapter(requireContext(), bookmarkList)
+            var adapter = MarketAdapter(requireContext(),bookmarkList)
             binding.loading.visibility = View.INVISIBLE
             binding.bookmarkRc.adapter = adapter
+            swipeTodelete(adapter)
         }
 
     }
 
+    private fun swipeTodelete(adapter: MarketAdapter) {
+        // left swipe to delete the data from room db and recycler view
+        var itemTouchHelperCallbacks = object : ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val pos = viewHolder.adapterPosition
+                val coin = adapter.getCoin(pos)
+                lifecycleScope.launch(Dispatchers.Main) {
+                    viewmodel.deleteCoin(coin.coinNumber)
+
+                }
+
+                Toast.makeText(requireContext(),"deleted", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        // attach swipe to recycler view
+        ItemTouchHelper(itemTouchHelperCallbacks).apply {
+            attachToRecyclerView(binding.bookmarkRc)
+        }
+    }
 }

@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cryptogo.R
 import com.example.cryptogo.databinding.CoinItemviewBinding
+import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
 
 class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): RecyclerView.Adapter<MarketAdapter.TopLoserViewHolder>() {
@@ -34,21 +36,16 @@ class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): Recyc
 
     override fun onBindViewHolder(holder: TopLoserViewHolder, position: Int) {
         holder.name.text = list[position].name
-        Glide.with(context)
-            .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${list[position].id}.png")
-            .thumbnail(Glide.with(context).load(R.drawable.spinner))
-            .into(holder.coinImage)
-
-        Glide.with(context)
-            .load("https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/${list[position].id}.png")
-            .thumbnail(Glide.with(context).load(R.drawable.spinner))
-            .into(holder.graph)
-
+        setCoinImage(holder.coinImage, position)
+        setGraphImage(holder.graph, position)
+        setChange(holder, position)
         holder.shortName.text = list[position].symbol
         val p = list[position].quotes[0].price
         holder.price.text = "$${String.format("%.7f",p)}"
 
+    }
 
+    private fun setChange(holder: TopLoserViewHolder, position: Int) {
         val change = list[position].quotes[0].percentChange24h
         if (change > 0) {
             holder.deviation.setTextColor(context.resources.getColor(R.color.green))
@@ -59,10 +56,29 @@ class MarketAdapter(var context: Context, var list: List<CryptoCurrency>): Recyc
         }
     }
 
+    private fun setGraphImage(graph: ImageView, position: Int) {
+        Glide.with(context)
+            .load("https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/${list[position].id}.png")
+            .thumbnail(Glide.with(context).load(R.drawable.spinner))
+            .into(graph)
+    }
+
+    private fun setCoinImage(coinImage: ImageView, position: Int) {
+        Glide.with(context)
+            .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${list[position].id}.png")
+            .thumbnail(Glide.with(context).load(R.drawable.spinner))
+            .into(coinImage)
+    }
+
     fun updateDataList(datalist:List<CryptoCurrency>) {
         list = datalist
         notifyDataSetChanged()
     }
+
+    fun getCoin(pos: Int): Coin {
+        return Coin(null, list[pos].cmcRank)
+    }
+
     override fun getItemCount(): Int {
         return list.size
     }
