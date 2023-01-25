@@ -46,8 +46,8 @@ class TopLoserFragment : Fragment() {
                     list = result.body()!!.data.cryptoCurrencyList
 
                     Collections.sort(list) {
-                            i,j ->(i.quotes[0].percentChange30d.toInt())
-                        .compareTo(j.quotes[0].percentChange30d.toInt())
+                            i,j ->(i.quotes[0].percentChange24h.toInt())
+                        .compareTo(j.quotes[0].percentChange24h.toInt())
                     }
                 }
                 (context as Activity).runOnUiThread{

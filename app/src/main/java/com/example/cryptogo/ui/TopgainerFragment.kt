@@ -43,8 +43,8 @@ class TopgainerFragment : Fragment() {
                    var list = result.body()!!.data.cryptoCurrencyList
 
                     Collections.sort(list) {
-                        i,j ->(j.quotes[0].percentChange30d.toInt())
-                        .compareTo(i.quotes[0].percentChange30d.toInt())
+                        i,j ->(j.quotes[0].percentChange24h.toInt())
+                        .compareTo(i.quotes[0].percentChange24h.toInt())
                     }
                     (context as Activity).runOnUiThread{
                         binding.loading.visibility = View.INVISIBLE
