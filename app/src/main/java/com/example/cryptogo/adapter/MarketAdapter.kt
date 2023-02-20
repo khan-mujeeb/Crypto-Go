@@ -1,6 +1,7 @@
 package com.example.cryptogo.adapter
 
 import android.content.Context
+import android.provider.Contacts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,7 +98,12 @@ class MarketAdapter(var context: Context, var list: List<CryptoCurrency>, val Fr
     }
 
     fun updateDataList(datalist:List<CryptoCurrency>) {
+
         list = datalist
+//        notifyDataSetChanged() notify a RecyclerView that the underlying dataset has been changed.
+//        This method causes the
+//        RecyclerView to rebind all views, which ensures that any changes in the data
+//        are reflected in the Contacts.Intents.UI.
         notifyDataSetChanged()
     }
 

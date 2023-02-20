@@ -73,6 +73,7 @@ class MarketFragment : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
+                // search text is defined globally
                 searchText = p0.toString().toLowerCase()
                 updateRecyclerView()
             }
@@ -87,11 +88,14 @@ class MarketFragment : Fragment() {
             val coinName = item.name.toLowerCase()
             val coinSymbol = item.symbol.toLowerCase()
 
+            // comparing item name with searchText and adding it to another list
             if (coinName.contains(searchText) || coinSymbol.contains(searchText)) {
                 data.add(item)
             }
         }
-        adapter.updateDataList(data)
+
+        // setting adapter with new list
+        adapter.updateDataList(data)        // updateDataList is user defined fuction in MarketAdapter
     }
 
 

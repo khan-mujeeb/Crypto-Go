@@ -9,7 +9,7 @@
     tools:context=".activity.MainActivity">
 
     <fragment
-        android:layout_alignParentTop="true"
+        android:layout_above="@id/bottom_navBar"
         android:id="@+id/host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"

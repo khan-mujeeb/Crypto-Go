@@ -1,5 +1,7 @@
 package com.example.cryptogo.ui
 
+import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -16,14 +19,16 @@ import com.example.cryptogo.R
 import com.example.cryptogo.databinding.FragmentDetailsBinding
 import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
-
-
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
+    val sharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)
+    val editor = sharedPreferences?.edit()
+
 //    private lateinit var bookMarkedCoinList: List<Coin>
 
     override fun onCreateView(
@@ -36,16 +41,34 @@ class DetailsFragment : Fragment() {
 
         val data: CryptoCurrency = args.data!!
 
+        val id = data.id.toString()
+        var value = sharedPreferences?.getInt(id, 0)
+
         binding.addWatchlistButton.setOnClickListener {
             val coin = Coin(
                 null,
                 data.cmcRank
             )
-            lifecycleScope.launch(Dispatchers.IO) {
-                viewmodel.insertCoin(coin)
+//            Toast.makeText(requireContext(), "clicked", Toast.LENGTH_LONG).show()
+            if(value==null) {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewmodel.insertCoin(coin)
+                }
+                binding.addWatchlistButton.setImageResource(R.drawable.ic_star)
+                editor?.putInt(id, 1)
+                editor?.apply()
+
+                Toast.makeText(requireContext(), "saved", Toast.LENGTH_LONG).show()
+            }else if(value==1) {
+                binding.addWatchlistButton.setImageResource(R.drawable.ic_star_outline)
+                editor?.remove(id)
+                editor?.apply()
+                Toast.makeText(requireContext(), "removed", Toast.LENGTH_LONG).show()
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewmodel.deleteCoin(data.cmcRank)
+                }
             }
-            binding.addWatchlistButton.setImageResource(R.drawable.ic_star)
-            Toast.makeText(requireContext(), "saved", Toast.LENGTH_LONG).show()
+
         }
 
         //set data

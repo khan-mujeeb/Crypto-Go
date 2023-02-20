@@ -52,10 +52,10 @@
         android:layout_height="wrap_content"/>
     <androidx.viewpager.widget.ViewPager
         android:layout_below="@id/tabs"
-    android:id="@+id/viewPager"
-    android:layout_width="match_parent"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-    android:layout_height="match_parent"/>
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="match_parent"/>
 
 
 
