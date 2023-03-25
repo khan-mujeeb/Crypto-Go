@@ -1,69 +1,57 @@
 package com.example.cryptogo.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.cryptogo.R
-import com.example.cryptogo.activity.MainActivity.Companion.viewmodel
-import com.example.cryptogo.databinding.FragmentDetailsBinding
+import com.example.cryptogo.databinding.ActivityDetailsBinding
 import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class DetailsFragment : androidx.fragment.app.Fragment() {
-    private lateinit var binding: FragmentDetailsBinding
-    private val args: DetailsFragmentArgs by navArgs()
-    val sharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)
-    val editor = sharedPreferences?.edit()
+class DetailsActivity : AppCompatActivity() {
+    val args: DetailsActivityArgs by navArgs()
+    var binding: ActivityDetailsBinding? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
-//    private lateinit var bookMarkedCoinList: List<Coin>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val search = activity?.findViewById<EditText>(R.id.search_edit_text)
-        search?.visibility = View.GONE
-        binding = FragmentDetailsBinding.inflate(layoutInflater)
+//        val data: CryptoCurrency = args.data
+        val data = intent.extras?.getSerializable("data") as CryptoCurrency
 
-        val data: CryptoCurrency = args.data!!
+//        val data = intent.getSerializableExtra("data") as CryptoCurrency
 
         val id = data.id.toString()
-        var value = sharedPreferences?.getInt(id, 0)
+//        var value = sharedPreferences?.getInt(id, 0)
 
-        binding.addWatchlistButton.setOnClickListener {
+        binding!!.addWatchlistButton.setOnClickListener {
             val coin = Coin(
                 null,
                 data.cmcRank
             )
 //            Toast.makeText(requireContext(), "clicked", Toast.LENGTH_LONG).show()
-            if(value==null) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    viewmodel.insertCoin(coin)
-                }
-                binding.addWatchlistButton.setImageResource(R.drawable.ic_star)
-                editor?.putInt(id, 1)
-                editor?.apply()
-
-                Toast.makeText(requireContext(), "saved", Toast.LENGTH_LONG).show()
-            }else if(value==1) {
-                binding.addWatchlistButton.setImageResource(R.drawable.ic_star_outline)
-                editor?.remove(id)
-                editor?.apply()
-                Toast.makeText(requireContext(), "removed", Toast.LENGTH_LONG).show()
-                lifecycleScope.launch(Dispatchers.IO) {
-                    viewmodel.deleteCoin(data.cmcRank)
-                }
-            }
+//            if(value==null) {
+//                lifecycleScope.launch(Dispatchers.IO) {
+//                    MainActivity.viewmodel.insertCoin(coin)
+//                }
+//                binding!!.addWatchlistButton.setImageResource(R.drawable.ic_star)
+//                editor?.putInt(id, 1)
+//                editor?.apply()
+//
+//                Toast.makeText(ContentProviderCompat.requireContext(), "saved", Toast.LENGTH_LONG).show()
+//            }else if(value==1) {
+//                binding!!.addWatchlistButton.setImageResource(R.drawable.ic_star_outline)
+//                editor?.remove(id)
+//                editor?.apply()
+//                Toast.makeText(ContentProviderCompat.requireContext(), "removed", Toast.LENGTH_LONG).show()
+//                lifecycleScope.launch(Dispatchers.IO) {
+//                    MainActivity.viewmodel.deleteCoin(data.cmcRank)
+//                }
+//            }
 
         }
 
@@ -77,18 +65,16 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
         setBtnOnClick(data)
 
 
-
-        return binding.root
     }
 
     private fun setBtnOnClick(data: CryptoCurrency) {
 
-        val _15m = binding.btn15m
-        val _1hr = binding.btn1hr
-        val _4hr = binding.btn4hr
-        val _1d = binding.btn1D
-        val _1W = binding.btn1W
-        val _1M = binding.btn1M
+        val _15m = binding!!.btn15m
+        val _1hr = binding!!.btn1hr
+        val _4hr = binding!!.btn4hr
+        val _1d = binding!!.btn1D
+        val _1W = binding!!.btn1W
+        val _1M = binding!!.btn1M
 
         val clickListener = View.OnClickListener {
 
@@ -129,13 +115,13 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
         it!!.setBackgroundColor(R.color.olive_green!!)
         disableBtn(_1M, _1d, _1hr, _4hr, _1W)
 
-        val graphView = binding.graph
+        val graphView = binding!!.graph
         graphView.settings.javaScriptEnabled = true
         graphView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
-        var url =
+        val url =
             "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=${data.symbol}USD&interval=${s}&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=Dark&style=1&timezone=Etc%2FUTC&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en&utm_source=coinmarketcap.com&utm_medium=widget&utm_campaign=chart&utm_term=BTCUSDT"
-        binding.graph.loadUrl(url)
+        binding!!.graph.loadUrl(url)
     }
 
     private fun disableBtn(
@@ -157,11 +143,11 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
         setBookMarkIcon(data.cmcRank)
 
         // symbol
-        binding.detailSymbolTextView.text = data.symbol
+        binding!!.detailSymbolTextView.text = data.symbol
 
         // price
         val price = data.quotes[0].price
-        binding.detailPriceTextView.text = "$${String.format("%.8f", price)}"
+        binding!!.detailPriceTextView.text = "$${String.format("%.8f", price)}"
 
         // logo
         setLogo(data)
@@ -173,23 +159,23 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun coinDetails(data: CryptoCurrency) {
-        binding.name.text = data.name
-        binding.rank.text = data.cmcRank.toString()
-        binding.marketCap.text = (data.quotes[0].marketCap).toInt().toString()
-        binding.totalSupply.text = data.totalSupply.toString()
-        binding.maxSupply.text = data.maxSupply.toString()
+        binding!!.name.text = data.name
+        binding!!.rank.text = data.cmcRank.toString()
+        binding!!.marketCap.text = (data.quotes[0].marketCap).toInt().toString()
+        binding!!.totalSupply.text = data.totalSupply.toString()
+        binding!!.maxSupply.text = data.maxSupply.toString()
     }
 
     private fun percentChange(data: CryptoCurrency) {
         val change = data.quotes[0].percentChange24h
-        val holder = binding.detailChangeTextView
-        val ImgHolder = binding.detailChangeImageView
+        val holder = binding!!.detailChangeTextView
+        val ImgHolder = binding!!.detailChangeImageView
         if (change > 0) {
-            holder.setTextColor(context?.resources!!.getColor(R.color.green))
-            binding.detailChangeTextView.text = "${String.format("%.2f", change)}%"
+            holder.setTextColor(this.resources!!.getColor(R.color.green))
+            binding!!.detailChangeTextView.text = "${String.format("%.2f", change)}%"
             ImgHolder.setImageResource(R.drawable.ic_caret_up)
         } else {
-            holder.setTextColor(context?.resources!!.getColor(R.color.red))
+            holder.setTextColor(this.resources!!.getColor(R.color.red))
             holder.text = "${String.format("%.2f", change)}%"
             ImgHolder.setImageResource(R.drawable.ic_caret_down)
         }
@@ -199,21 +185,21 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
         Glide.with(this)
             .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${data.id}.png")
             .thumbnail(Glide.with(this).load(R.drawable.spinner))
-            .into(binding.detailImageView)
+            .into(binding!!.detailImageView)
     }
 
     private fun setBookMarkIcon(cmcRank: Int) {
 //        getResponce()
 //        for (item in bookMarkedCoinList) {
 //            if (item.coinNumber == cmcRank) {
-//                binding.addWatchlistButton.setImageResource(R.drawable.ic_star)
+//                binding!!.addWatchlistButton.setImageResource(R.drawable.ic_star)
 //            }
 //        }
     }
 
 
     private fun setChart(data: CryptoCurrency) {
-        val graphView = binding.graph
+        val graphView = binding!!.graph
         graphView.settings.javaScriptEnabled = true
         graphView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         val s = "15"
@@ -221,9 +207,8 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
 
         var url =
             "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=${data.symbol}USD&interval=${s}&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=Dark&style=1&timezone=Etc%2FUTC&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en&utm_source=coinmarketcap.com&utm_medium=widget&utm_campaign=chart&utm_term=BTCUSDT"
-        binding.graph.loadUrl(url)
+        binding!!.graph.loadUrl(url)
     }
-
 
 
 }

@@ -9,19 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="com.example.cryptogo.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_marketFragment"
             app:destination="@id/marketFragment" />
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/marketFragment"
         android:name="com.example.cryptogo.home.MarketFragment"
         android:label="fragment_market"
-        tools:layout="@layout/fragment_market" >
+        tools:layout="@layout/fragment_market">
         <action
             android:id="@+id/action_marketFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
@@ -33,7 +36,7 @@
         android:id="@+id/bookmarkFragment"
         android:name="com.example.cryptogo.home.BookmarkFragment"
         android:label="fragment_bookmark"
-        tools:layout="@layout/fragment_bookmark" >
+        tools:layout="@layout/fragment_bookmark">
         <action
             android:id="@+id/action_bookmarkFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -42,12 +45,12 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.cryptogo.ui.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="data"
+            android:defaultValue="@null"
             app:argType="com.example.cryptogo.model.CryptoCurrency"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
         <action
             android:id="@+id/action_detailsFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
@@ -58,4 +61,14 @@
             android:id="@+id/action_detailsFragment_to_marketFragment"
             app:destination="@id/marketFragment" />
     </fragment>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.example.cryptogo.ui.DetailsActivity"
+        android:label="DetailsActivity">
+        <argument
+            android:name="data"
+            android:defaultValue="@null"
+            app:argType="com.example.cryptogo.model.CryptoCurrency"
+            app:nullable="true" />
+    </activity>
 </navigation>

@@ -1,6 +1,8 @@
 package com.example.cryptogo.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.provider.Contacts
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import com.example.cryptogo.home.HomeFragmentDirections
 import com.example.cryptogo.home.MarketFragmentDirections
 import com.example.cryptogo.model.Coin
 import com.example.cryptogo.model.CryptoCurrency
+import com.example.cryptogo.ui.DetailsActivity
 
 class MarketAdapter(var context: Context, var list: List<CryptoCurrency>, val From: String): RecyclerView.Adapter<MarketAdapter.TopLoserViewHolder>() {
     class TopLoserViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -52,9 +55,18 @@ class MarketAdapter(var context: Context, var list: List<CryptoCurrency>, val Fr
         holder.itemView.setOnClickListener {
             when(From) {
                 "home" -> {
-                    Navigation.findNavController(it).navigate(
-                        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(list[position])
-                    )
+//                    Navigation.findNavController(it).navigate(
+//                        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(list[position])
+//                    )
+//                    val bundle = Bundle().apply {
+//                        putSerializable("data", list[position])
+//                    }
+//                    val intent = Intent(context, DetailsActivity::class.java).apply {
+//                        putExtras(bundle)
+//                    }
+                    val intent = Intent(context, DetailsActivity::class.java)
+                    intent.putExtra("data", list[position])
+                    context.startActivity(intent)
                 }
                 "market" -> {
                     Navigation.findNavController(it).navigate(

@@ -1,5 +1,7 @@
 package com.example.cryptogo.model
 
+import java.io.Serializable
+
 data class Quote(
     val dominance: Double,
     val fullyDilluttedMarketCap: Double,
@@ -18,4 +20,16 @@ data class Quote(
     val tvl: Double,
     val volume24h: Double,
     val ytdPriceChangePercentage: Double
-)
+): Serializable {
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
+    override fun toString(): String {
+        return super.toString()
+    }
+}

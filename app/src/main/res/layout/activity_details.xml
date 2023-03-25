@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/white"
+    tools:context=".ui.DetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/olive_green"
+        android:id="@+id/detailAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/addWatchlistButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_star_outline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backStackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_back_stack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailSymbolTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addWatchlistButton"
+            app:layout_constraintStart_toEndOf="@+id/backStackButton"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="BTC" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailAppbar">
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/detailChangeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/detailChangeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/detailPriceTextView"
+            tools:text="2.68%" />
+
+        <TextView
+
+            android:id="@+id/detailPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/detailImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="$108.56" />
+
+        <ImageView
+            android:id="@+id/detailChangeImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/detailChangeTextView"
+            app:layout_constraintStart_toStartOf="@+id/detailPriceTextView"
+            app:layout_constraintTop_toTopOf="@+id/detailChangeTextView"
+            tools:srcCompat="@drawable/ic_caret_up" />
+
+        <ImageView
+            android:id="@+id/detailImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:textColor="@color/black"
+            android:id="@+id/btn_15m"
+            android:layout_width="0dp"
+            android:text="@string/_15m"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1hr"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/_1h"
+            android:layout_height="match_parent"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_4hr"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@string/_4h"
+            android:layout_height="match_parent"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1D"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@string/_1d"
+            android:layout_height="match_parent"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1W"
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="@string/_1w"
+            android:layout_height="match_parent"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_1M"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@string/_1m"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:elevation="20dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:id="@+id/name"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Rank"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:id="@+id/rank"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:text="Market Cap"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:id="@+id/marketCap"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+    <LinearLayout
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="total supply"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/totalSupply"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:text="max supply"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:id="@+id/maxSupply"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+</LinearLayout>
